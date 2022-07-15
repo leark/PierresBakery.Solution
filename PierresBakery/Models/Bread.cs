@@ -11,7 +11,7 @@ namespace Bakery.Models
 
     public int CalculateCost()
     {
-      return 0;
+      return baseCost * Count;
     }
   }
 }

@@ -26,5 +26,12 @@ namespace Bakery.Tests
       Bread newBread = new Bread(5);
       Assert.AreEqual(5, newBread.Count);
     }
+
+    [TestMethod]
+    public void CalculateCost_ReturnsCalculatedCost_Int()
+    {
+      Bread newBread = new Bread(1);
+      Assert.AreEqual(5, newBread.CalculateCost());
+    }
   }
 }
