@@ -11,9 +11,11 @@ namespace Bakery
       Console.WriteLine(" ┌─────────────────────────────┐");
       Console.WriteLine(" │ Welcome to Pierre's Bakery! │");
       Console.WriteLine(" └─────────────────────────────┘");
-      Console.WriteLine(" Where you can buy loaves of Bread");
-      Console.WriteLine("            and number of Pastries!");
-      Console.WriteLine(" ─────────────────────────────");
+      Console.WriteLine(" ───────────────────────────────");
+      Console.WriteLine("   Where you can buy            ");
+      Console.WriteLine("       loaves of bread and      ");
+      Console.WriteLine("           number of Pastries!  ");
+      Console.WriteLine(" ───────────────────────────────");
       bool leave = false;
       _bread = new Bread(0);
       _pastry = new Pastry(0);
@@ -98,12 +100,16 @@ namespace Bakery
             }
           }
         }
+        else
+        {
+          _bread.Count = moreBread;
+        }
       }
       else if (type == "pastry")
       {
         Console.WriteLine("How many pastries would you like to buy?");
         Console.WriteLine("Remember, {0}", Pastry.GetDiscountMessage());
-        _pastry.Count += int.Parse(Console.ReadLine());
+        int morePastry = int.Parse(Console.ReadLine());
         if (_pastry.Count > 0)
         {
           Console.WriteLine("Would you like to add to your previous order or reset your order?");
@@ -116,15 +122,19 @@ namespace Bakery
             {
               validChoice = true;
               Console.WriteLine("How many more?");
-              _pastry.Count += int.Parse(Console.ReadLine());
+              _pastry.Count += morePastry;
             }
             else if (addReset == "reset")
             {
               validChoice = true;
               Console.WriteLine("How many would you like to buy?");
-              _pastry.Count = int.Parse(Console.ReadLine());
+              _pastry.Count = morePastry;
             }
           }
+        }
+        else
+        {
+          _pastry.Count = morePastry;
         }
       }
     }
