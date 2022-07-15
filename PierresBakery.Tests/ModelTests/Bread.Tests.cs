@@ -21,10 +21,10 @@ namespace Bakery.Tests
     }
 
     [TestMethod]
-    public void GetCount_ReturnsCount_Int()
+    public void Count_ReturnsCount_Int()
     {
       Bread newBread = new Bread(5);
-      Assert.AreEqual(5, newBread.GetCount());
+      Assert.AreEqual(5, newBread.Count);
     }
   }
 }

@@ -9,7 +9,7 @@ namespace Bakery.Models
       Count = count;
     }
 
-    public int GetCount()
+    public int CalculateCost()
     {
       return 0;
     }
