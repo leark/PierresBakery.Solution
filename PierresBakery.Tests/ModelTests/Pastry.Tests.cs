@@ -50,5 +50,11 @@ namespace Bakery.Tests
       newPastry.Count = 12;
       Assert.AreEqual(20, newPastry.CalculateCostWithDiscount());
     }
+
+    [TestMethod]
+    public void GetDiscountMessage_ReturnDiscountMessage_String()
+    {
+      Assert.AreEqual("Every 3rd Pastry is $1 off", Pastry.GetDiscountMessage());
+    }
   }
 }

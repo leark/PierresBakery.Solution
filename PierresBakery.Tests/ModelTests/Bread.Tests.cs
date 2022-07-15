@@ -46,5 +46,11 @@ namespace Bakery.Tests
       newBread.Count = 6;
       Assert.AreEqual(20, newBread.CalculateCostWithDiscount());
     }
+
+    [TestMethod]
+    public void GetDiscountMessage_ReturnDiscountMessage_String()
+    {
+      Assert.AreEqual("Every 3rd Bread is free", Bread.GetDiscountMessage());
+    }
   }
 }
