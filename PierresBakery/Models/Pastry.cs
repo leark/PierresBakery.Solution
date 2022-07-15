@@ -13,5 +13,10 @@ namespace Bakery.Models
     {
       return Count * _baseCost;
     }
+
+    public int CalculateCostWithDiscount()
+    {
+      return 0;
+    }
   }
 }

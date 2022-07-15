@@ -38,13 +38,13 @@ namespace Bakery.Tests
     public void CalculateWithDiscount_ReturnsCalculatedCostWithDiscount_Int()
     {
       Bread newBread = new Bread(3);
-      Assert.AreEqual(10, newBread.CalculateWithDiscount());
+      Assert.AreEqual(10, newBread.CalculateCostWithDiscount());
       newBread.Count = 4;
-      Assert.AreEqual(15, newBread.CalculateWithDiscount());
+      Assert.AreEqual(15, newBread.CalculateCostWithDiscount());
       newBread.Count = 5;
-      Assert.AreEqual(20, newBread.CalculateWithDiscount());
+      Assert.AreEqual(20, newBread.CalculateCostWithDiscount());
       newBread.Count = 6;
-      Assert.AreEqual(20, newBread.CalculateWithDiscount());
+      Assert.AreEqual(20, newBread.CalculateCostWithDiscount());
     }
   }
 }

@@ -14,7 +14,7 @@ namespace Bakery.Models
       return _baseCost * Count;
     }
 
-    public int CalculateWithDiscount()
+    public int CalculateCostWithDiscount()
     {
       // Discount is that every 3rd loaf is free
       return _baseCost * Count - (Count / 3 * _baseCost);
