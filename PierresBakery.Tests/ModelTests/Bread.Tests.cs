@@ -33,5 +33,18 @@ namespace Bakery.Tests
       Bread newBread = new Bread(1);
       Assert.AreEqual(5, newBread.CalculateCost());
     }
+
+    [TestMethod]
+    public void CalculateWithDiscount_ReturnsCalculatedCostWithDiscount_Int()
+    {
+      Bread newBread = new Bread(3);
+      Assert.AreEqual(10, newBread.CalculateWithDiscount());
+      newBread.Count = 4;
+      Assert.AreEqual(15, newBread.CalculateWithDiscount());
+      newBread.Count = 5;
+      Assert.AreEqual(20, newBread.CalculateWithDiscount());
+      newBread.Count = 6;
+      Assert.AreEqual(20, newBread.CalculateWithDiscount());
+    }
   }
 }
