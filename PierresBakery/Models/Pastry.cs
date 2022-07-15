@@ -16,7 +16,8 @@ namespace Bakery.Models
 
     public int CalculateCostWithDiscount()
     {
-      return 0;
+      // every 3rd pastry is $1 off
+      return Count * _baseCost - (Count / 3);
     }
   }
 }

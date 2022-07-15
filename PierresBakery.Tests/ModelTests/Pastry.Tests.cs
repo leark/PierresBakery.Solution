@@ -41,8 +41,14 @@ namespace Bakery.Tests
     {
       Pastry newPastry = new Pastry(3);
       Assert.AreEqual(5, newPastry.CalculateCostWithDiscount());
+      newPastry.Count = 4;
+      Assert.AreEqual(7, newPastry.CalculateCostWithDiscount());
       newPastry.Count = 5;
       Assert.AreEqual(9, newPastry.CalculateCostWithDiscount());
+      newPastry.Count = 6;
+      Assert.AreEqual(10, newPastry.CalculateCostWithDiscount());
+      newPastry.Count = 12;
+      Assert.AreEqual(20, newPastry.CalculateCostWithDiscount());
     }
   }
 }
