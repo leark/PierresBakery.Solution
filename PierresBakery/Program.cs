@@ -14,14 +14,16 @@ namespace Bakery
       Console.WriteLine("       loaves of bread and      ");
       Console.WriteLine("           number of Pastries!  ");
       Console.WriteLine(" ───────────────────────────────");
+      Console.WriteLine("                                ");
       bool leave = false;
       Bread bread = new Bread(0);
       Pastry pastry = new Pastry(0);
       while (!leave)
       {
-        Console.WriteLine("What would you like to do?");
-        Console.WriteLine("You can (menu/buy bread/buy pastry/");
-        Console.WriteLine("total cost/checkout/leave)");
+        Console.WriteLine(" ─────────────────────────");
+        Console.WriteLine(" What would you like to do?");
+        Console.WriteLine(" You can (menu/buy bread/buy pastry/");
+        Console.WriteLine(" total cost/checkout/leave)");
         string userAction = Console.ReadLine().ToLower();
         switch (userAction)
         {
