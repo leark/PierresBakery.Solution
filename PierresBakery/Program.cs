@@ -78,7 +78,7 @@ namespace Bakery
       if (item.Count > 0)
       {
         Console.WriteLine(" Would you like to add to your previous order or reset your order?");
-        Console.WriteLine(" (add) (reset)");
+        Console.WriteLine(" (add/reset)");
         bool validChoice = false;
         while (!validChoice)
         {
@@ -86,14 +86,21 @@ namespace Bakery
           if (addReset == "add")
           {
             validChoice = true;
+            Console.WriteLine(" ──────────────");
             Console.WriteLine(" How many more?");
             item.Count += moreItem;
           }
           else if (addReset == "reset")
           {
             validChoice = true;
+            Console.WriteLine(" ───────────────────────────────");
             Console.WriteLine(" How many would you like to buy?");
             item.Count = moreItem;
+          }
+          else
+          {
+            Console.WriteLine(" ──────────────");
+            Console.WriteLine(" Invalid action");
           }
         }
       }
