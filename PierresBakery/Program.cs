@@ -4,8 +4,6 @@ namespace Bakery
 {
   public class Program
   {
-    private static Bread _bread;
-    private static Pastry _pastry;
     public static void Main()
     {
       Console.WriteLine(" ┌─────────────────────────────┐");
@@ -17,13 +15,13 @@ namespace Bakery
       Console.WriteLine("           number of Pastries!  ");
       Console.WriteLine(" ───────────────────────────────");
       bool leave = false;
-      _bread = new Bread(0);
-      _pastry = new Pastry(0);
+      Bread bread = new Bread(0);
+      Pastry pastry = new Pastry(0);
       while (!leave)
       {
         Console.WriteLine("What would you like to do?");
-        Console.WriteLine("You can (menu) (buy bread) (buy pastry)");
-        Console.WriteLine("(calculate total cost) (checkout) (leave)");
+        Console.WriteLine("You can (menu/buy bread/buy pastry/");
+        Console.WriteLine("total cost/checkout/leave)");
         string userAction = Console.ReadLine().ToLower();
         switch (userAction)
         {
@@ -31,16 +29,16 @@ namespace Bakery
             PrintMenu();
             break;
           case "buy bread":
-            Buy("bread");
+            Buy(bread);
             break;
           case "buy pastry":
-            Buy("pastry");
+            Buy(pastry);
             break;
-          case "calculate total cost":
-            CalculateTotal();
+          case "total cost":
+            PrintTotal(bread, pastry);
             break;
           case "checkout":
-            Checkout();
+            Checkout(bread, pastry);
             break;
           case "leave":
             leave = true;
@@ -71,97 +69,69 @@ namespace Bakery
       Console.WriteLine(" └────────────────────────────┘");
     }
 
-    public static void Buy(string type)
+    public static void Buy(BakeryItem item)
     {
-      if (type == "bread")
+      Console.WriteLine(" ─────────────────────────────────────");
+      Console.WriteLine(" How many items would you like to buy?");
+      Console.WriteLine(" Remember, {0}", item.GetDiscountMessage());
+      int moreItem = int.Parse(Console.ReadLine());
+      if (item.Count > 0)
       {
-        Console.WriteLine("How many loaves of bread would you like to buy?");
-        Console.WriteLine("Remember, {0}", Bread.GetDiscountMessage());
-        int moreBread = int.Parse(Console.ReadLine());
-        if (_bread.Count > 0)
+        Console.WriteLine(" Would you like to add to your previous order or reset your order?");
+        Console.WriteLine(" (add) (reset)");
+        bool validChoice = false;
+        while (!validChoice)
         {
-          Console.WriteLine("Would you like to add to your previous order or reset your order?");
-          Console.WriteLine("(add) (reset)");
-          bool validChoice = false;
-          while (!validChoice)
+          string addReset = Console.ReadLine().ToLower();
+          if (addReset == "add")
           {
-            string addReset = Console.ReadLine().ToLower();
-            if (addReset == "add")
-            {
-              validChoice = true;
-              Console.WriteLine("How many more?");
-              _bread.Count += moreBread;
-            }
-            else if (addReset == "reset")
-            {
-              validChoice = true;
-              Console.WriteLine("How many would you like to buy?");
-              _bread.Count = moreBread;
-            }
+            validChoice = true;
+            Console.WriteLine(" How many more?");
+            item.Count += moreItem;
+          }
+          else if (addReset == "reset")
+          {
+            validChoice = true;
+            Console.WriteLine(" How many would you like to buy?");
+            item.Count = moreItem;
           }
         }
-        else
-        {
-          _bread.Count = moreBread;
-        }
-      }
-      else if (type == "pastry")
-      {
-        Console.WriteLine("How many pastries would you like to buy?");
-        Console.WriteLine("Remember, {0}", Pastry.GetDiscountMessage());
-        int morePastry = int.Parse(Console.ReadLine());
-        if (_pastry.Count > 0)
-        {
-          Console.WriteLine("Would you like to add to your previous order or reset your order?");
-          Console.WriteLine("(add) (reset)");
-          bool validChoice = false;
-          while (!validChoice)
-          {
-            string addReset = Console.ReadLine().ToLower();
-            if (addReset == "add")
-            {
-              validChoice = true;
-              Console.WriteLine("How many more?");
-              _pastry.Count += morePastry;
-            }
-            else if (addReset == "reset")
-            {
-              validChoice = true;
-              Console.WriteLine("How many would you like to buy?");
-              _pastry.Count = morePastry;
-            }
-          }
-        }
-        else
-        {
-          _pastry.Count = morePastry;
-        }
-      }
-    }
-
-    public static int CalculateTotal()
-    {
-      Console.WriteLine("Your total is: ");
-      Console.WriteLine("{0} loaves of bread: ${1}", _bread.Count, _bread.CalculateCost());
-      Console.WriteLine("With discount: ${0}", _bread.CalculateCostWithDiscount());
-      Console.WriteLine("{0} pastries: ${1}", _pastry.Count, _pastry.CalculateCost());
-      Console.WriteLine("With discount: ${0}", _pastry.CalculateCostWithDiscount());
-
-      return _bread.CalculateCostWithDiscount() + _pastry.CalculateCostWithDiscount();
-    }
-
-    public static void Checkout()
-    {
-      if (_bread.Count > 0 && _pastry.Count > 0)
-      {
-        Console.WriteLine("Thank you for your purchase!");
-        Console.WriteLine("Your total was ${0}", CalculateTotal());
-        _bread.Count = 0;
-        _pastry.Count = 0;
       }
       else
       {
-        Console.WriteLine("Your cart is empty");
+        item.Count = moreItem;
+      }
+    }
+
+    public static int CalculateTotal(Bread bread, Pastry pastry)
+    {
+      return bread.CalculateCostWithDiscount() + pastry.CalculateCostWithDiscount();
+    }
+
+    public static void PrintTotal(Bread bread, Pastry pastry)
+    {
+      Console.WriteLine(" ──────────────────────────");
+      Console.WriteLine(" Your total is: ");
+      Console.WriteLine(" {0} loaves of bread: ${1}", bread.Count, bread.CalculateCost());
+      Console.WriteLine(" With discount: ${0}", bread.CalculateCostWithDiscount());
+      Console.WriteLine(" {0} pastries: ${1}", pastry.Count, pastry.CalculateCost());
+      Console.WriteLine(" With discount: ${0}", pastry.CalculateCostWithDiscount());
+    }
+
+    public static void Checkout(Bread bread, Pastry pastry)
+    {
+      if (bread.Count > 0 || pastry.Count > 0)
+      {
+        Console.WriteLine(" ────────────────────────────");
+        Console.WriteLine(" Thank you for your purchase!");
+        Console.WriteLine(" Your total was ${0}", CalculateTotal(bread, pastry));
+        bread.Count = 0;
+        pastry.Count = 0;
+      }
+      else
+      {
+        Console.WriteLine(" ──────────────────");
+        Console.WriteLine(" Your cart is empty");
       }
     }
   }

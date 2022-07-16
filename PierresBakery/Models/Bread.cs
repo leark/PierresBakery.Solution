@@ -1,30 +1,24 @@
 namespace Bakery.Models
 {
-  public class Bread
+  public class Bread : BakeryItem
   {
-    private static int _baseCost = 5;
-    public int Count { get; set; }
-    private static string _discount = "Every 3rd Bread is free";
-
-    public Bread(int count)
+    protected override int BaseCost
     {
-      Count = count;
+      get { return 5; }
+    }
+    protected override string DiscountMsg
+    {
+      get { return "Every 3rd Bread is free"; }
     }
 
-    public int CalculateCost()
+    public Bread(int count) : base(count)
     {
-      return _baseCost * Count;
     }
 
-    public int CalculateCostWithDiscount()
+    public override int CalculateCostWithDiscount()
     {
       // Discount is that every 3rd loaf is free
-      return _baseCost * Count - (Count / 3 * _baseCost);
-    }
-
-    public static string GetDiscountMessage()
-    {
-      return _discount;
+      return BaseCost * Count - (Count / 3 * BaseCost);
     }
   }
 }

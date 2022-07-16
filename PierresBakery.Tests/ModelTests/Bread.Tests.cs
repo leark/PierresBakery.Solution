@@ -6,13 +6,6 @@ namespace Bakery.Tests
   [TestClass]
   public class BreadTests
   {
-    // Test methods go here
-    // [TestMethod]
-    // public void NameOfMethodWeAreTesting_DescriptionOfBehavior_ExpectedReturnValue()
-    // {
-    //   // any necessary logic to prep for test; instantiating new classes, etc.
-    //   Assert.AreEqual(EXPECTED RESULT, CODE TO TEST);
-    // }
     [TestMethod]
     public void BreadConstructor_CreatesInstanceOfBread_Bread()
     {
@@ -50,7 +43,8 @@ namespace Bakery.Tests
     [TestMethod]
     public void GetDiscountMessage_ReturnDiscountMessage_String()
     {
-      Assert.AreEqual("Every 3rd Bread is free", Bread.GetDiscountMessage());
+      Bread b = new Bread(1);
+      Assert.AreEqual("Every 3rd Bread is free", b.GetDiscountMessage());
     }
   }
 }
